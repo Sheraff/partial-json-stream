@@ -17,12 +17,10 @@ document.getElementById('json').addEventListener('click', (event) => {
 })
 
 async function fetchWithStream(method) {
-	performance.mark('start')
-
 	const actionnableSink = method === 'every'
 		? new ActionnableSink(getEvery100SinkAction())
 		: new ActionnableSink(getFirst100SinkAction())
-
+		
 	const response = await fetch('./data/names.json')
 
 	await response.body
@@ -34,8 +32,6 @@ async function fetchWithStream(method) {
 }
 
 async function fetchWithJson(method) {
-	performance.mark('start')
-
 	const response = await fetch('./data/names.json')
 
 	const json = await response.json()
@@ -70,8 +66,15 @@ function getEvery100SinkAction() {
 	}
 }
 
-let isFirstResult = true
+async function fetch(url) {
+	writeTiming('Fetching...')
+	const response = await window.fetch(url)
+	writeTiming('Parsing...')
+	performance.mark('start')
+	return response
+}
 
+let isFirstResult = true
 function writeObjectToDom(object) {
 	requestAnimationFrame(() => {
 		{
@@ -83,11 +86,15 @@ function writeObjectToDom(object) {
 
 		if(isFirstResult) {
 			const duration = measure()
-			const node = document.getElementById('timing')
-			node.textContent = `${Math.round(duration)}ms`
+			writeTiming(Math.round(duration))
 			isFirstResult = false
 		}
 	})
+}
+
+function writeTiming(str) {
+	const node = document.getElementById('timing')
+	node.textContent = str
 }
 
 function clearDomResults() {
