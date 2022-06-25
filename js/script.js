@@ -17,13 +17,14 @@ document.getElementById('json').addEventListener('click', (event) => {
 })
 
 async function fetchWithStream(method) {
+	performance.mark('start')
+
 	const actionnableSink = method === 'every'
 		? new ActionnableSink(getEvery100SinkAction())
 		: new ActionnableSink(getFirst100SinkAction())
 
 	const response = await fetch('/data/names.json')
 
-	performance.mark('start')
 	await response.body
 		.pipeThrough(new TextDecoderStream('utf-8'))
 		.pipeThrough(new ChunksToLinesStream())
@@ -33,9 +34,10 @@ async function fetchWithStream(method) {
 }
 
 async function fetchWithJson(method) {
+	performance.mark('start')
+
 	const response = await fetch('/data/names.json')
 
-	performance.mark('start')
 	const json = await response.json()
 
 	const displayable = method === 'every'
@@ -72,21 +74,31 @@ let isFirstResult = true
 
 function writeObjectToDom(object) {
 	requestAnimationFrame(() => {
-		const node = document.getElementById('results')
-		const element = document.createElement('div')
-		element.textContent = object.name
-		node.appendChild(element)
+		{
+			const node = document.getElementById('results')
+			const element = document.createElement('div')
+			element.textContent = object.name
+			node.appendChild(element)
+		}
 
 		if(isFirstResult) {
-			measure()
+			const duration = measure()
+			const node = document.getElementById('timing')
+			node.textContent = `${Math.round(duration)}ms`
 			isFirstResult = false
 		}
 	})
 }
 
 function clearDomResults() {
-	const node = document.getElementById('results')
-	node.innerHTML = ''
+	{
+		const node = document.getElementById('results')
+		node.innerHTML = ''
+	}
+	{
+		const node = document.getElementById('timing')
+		node.textContent = ''
+	}
 	isFirstResult = true
 }
 

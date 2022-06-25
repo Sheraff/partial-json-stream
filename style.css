@@ -1,18 +1,34 @@
 body {
 	margin: 0;
+	display: flex;
+	flex-direction: column;
+	height: calc(100vh - 2em);
+	padding: 1em;
 }
 
 form {
 	background-color: white;
 	position: sticky;
 	top: 0;
-	padding: 1em 1em 0;
 	box-shadow: 0 0.5em 0.5em white;
 	margin-bottom: 1em;
+}
+
+#outputs {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+	overflow: scroll;
+	padding: 0 1em 2em;
+	gap: 2em;
 }
 
 output {
 	display: block;
 	font-family: monospace;
-	padding: 0 2em 2em;
+}
+
+#timing {
+	position: sticky;
+	top: 0;
 }
