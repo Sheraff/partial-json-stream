@@ -1,4 +1,5 @@
 # partial-json-stream
  
 
-https://user-images.githubusercontent.com/1325721/175768629-67c8895b-de47-4894-9112-6fb6d8fa079f.mov
+https://user-images.githubusercontent.com/1325721/175768739-c5e0d9fa-2325-4627-9236-2f1cbe8c92a5.mov
+
