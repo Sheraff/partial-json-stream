@@ -86,7 +86,7 @@ function writeObjectToDom(object) {
 
 		if(isFirstResult) {
 			const duration = measure()
-			writeTiming(Math.round(duration))
+			writeTiming(`${Math.round(duration)}ms`)
 			isFirstResult = false
 		}
 	})
