@@ -12,6 +12,16 @@ form {
 	top: 0;
 	box-shadow: 0 0.5em 0.5em white;
 	margin-bottom: 1em;
+	display: grid;
+	grid-template-areas:
+		"selection connection"
+		"buttons buttons";
+	grid-template-columns: 1fr 1fr;
+	gap: 1em;
+}
+
+#buttons {
+	grid-area: buttons;
 }
 
 #outputs {

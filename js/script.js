@@ -110,5 +110,15 @@ function clearDomResults() {
 }
 
 function getSelectionMethod() {
-	return new FormData(document.forms[0]).get('selection')
+	return document.forms[0].elements.selection.value
+}
+
+{
+	navigator.connection.addEventListener('change', () => {
+		const connection = navigator.connection.effectiveType
+		document.forms[0].elements.connection.value = connection
+	})
+	setTimeout(() => {
+		document.forms[0].elements.connection.value = navigator.connection.effectiveType
+	}, 500)
 }
