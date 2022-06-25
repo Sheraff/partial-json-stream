@@ -80,7 +80,7 @@ function writeObjectToDom(object) {
 		{
 			const node = document.getElementById('results')
 			const element = document.createElement('div')
-			element.textContent = object.name
+			element.textContent = `#${object.id} - ${object.name}`
 			node.appendChild(element)
 		}
 
