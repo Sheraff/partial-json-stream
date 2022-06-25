@@ -1,0 +1,18 @@
+body {
+	margin: 0;
+}
+
+form {
+	background-color: white;
+	position: sticky;
+	top: 0;
+	padding: 1em 1em 0;
+	box-shadow: 0 0.5em 0.5em white;
+	margin-bottom: 1em;
+}
+
+output {
+	display: block;
+	font-family: monospace;
+	padding: 0 2em 2em;
+}

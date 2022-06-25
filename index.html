@@ -1,0 +1,22 @@
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="./style.css">
+<form>
+	<fieldset>
+		<legend>selection method</legend>
+		<div>
+			<input type="radio" name="selection" value="first" id="first" checked>
+			<label for="first">first 100 of list</label>
+		</div>
+		<div>
+			<input type="radio" name="selection" value="every" id="every">
+			<label for="every">every 100 in list</label>
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>start fetch with method</legend>
+		<button id="stream">custom streams</button>
+		<button id="json">await response.json()</button>
+	</fieldset>
+</form>
+<output id="results"></output>
+<script src="./js/script.js" type="module"></script>
