@@ -23,7 +23,7 @@ async function fetchWithStream(method) {
 		? new ActionnableSink(getEvery100SinkAction())
 		: new ActionnableSink(getFirst100SinkAction())
 
-	const response = await fetch('/data/names.json')
+	const response = await fetch('./data/names.json')
 
 	await response.body
 		.pipeThrough(new TextDecoderStream('utf-8'))
@@ -36,7 +36,7 @@ async function fetchWithStream(method) {
 async function fetchWithJson(method) {
 	performance.mark('start')
 
-	const response = await fetch('/data/names.json')
+	const response = await fetch('./data/names.json')
 
 	const json = await response.json()
 
